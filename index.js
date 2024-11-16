@@ -1,11 +1,23 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+require('dotenv').config();
+const TelegramBot = require('node-telegram-bot-api');
 
-app.get('/', (req, res) => {
-    res.send('Тест');
+// Вставьте токен, который вы получили от BotFather
+const token = process.env.TG_API_TOKEN;
+
+console.log(token, 'token');
+// Создаём экземпляр бота
+const bot = new TelegramBot(token, { polling: true });
+
+// Обработчик команды /start
+bot.onText(/\/start/, (msg) => {
+    console.log(msg);
+    const chatId = msg.chat.id;
+    bot.sendMessage(chatId, 'Привет! Я ваш Telegram-бот.');
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+// Обработчик сообщений
+bot.on('message', (msg) => {
+    console.log(msg);
+    const chatId = msg.chat.id;
+    bot.sendMessage(chatId, `Вы отправили: "${msg.text}"`);
 });
