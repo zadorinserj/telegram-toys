@@ -1,0 +1,13 @@
+{
+  "name": "telegram-toys",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Sergey <seryi.zadorin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
